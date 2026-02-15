@@ -3,11 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sol de Soter | Home</title>
+    <title>Sol de Soter | Perfil</title>
     <link rel="icon" type="image/png" href="assets/soldesoter_logo.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body class="home-page auth-required">
+  <body class="profile-page auth-required">
     <header class="topbar">
       <a class="brand" href="home.html" aria-label="Ir para Home">
         <img class="brand__logo" src="assets/soldesoter_logo.png" alt="Logo Sol de Soter" />
@@ -28,10 +28,30 @@
       </nav>
     </header>
 
-    <main class="home-main">
-      <section class="welcome-card">
-        <h1 id="welcome-title">Olá!</h1>
-        <p>Você está autenticado e foi redirecionado com sucesso para a página Home.</p>
+    <main class="profile-main">
+      <section class="profile-card">
+        <h1>Perfil de <span id="profile-title-name">Usuário</span></h1>
+        <p class="subtitle">Acompanhe o seu progresso e estatísticas.</p>
+
+        <div class="stat-item">
+          <p><span class="stat-icon" aria-hidden="true">💪</span> Força · Nível 1</p>
+          <div class="xp-bar"><span style="width: 22%"></span></div>
+        </div>
+
+        <div class="stat-item">
+          <p><span class="stat-icon" aria-hidden="true">🧠</span> Intelecto · Nível 1</p>
+          <div class="xp-bar"><span style="width: 18%"></span></div>
+        </div>
+
+        <div class="stat-item">
+          <p><span class="stat-icon" aria-hidden="true">🦉</span> Sabedoria · Nível 1</p>
+          <div class="xp-bar"><span style="width: 14%"></span></div>
+        </div>
+
+        <div class="stat-item">
+          <p><span class="stat-icon" aria-hidden="true">⚙️</span> Produtividade · Nível 1</p>
+          <div class="xp-bar"><span style="width: 27%"></span></div>
+        </div>
       </section>
     </main>
 
