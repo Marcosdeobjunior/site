@@ -60,7 +60,7 @@ registerForm.addEventListener("submit", (event) => {
     return;
   }
 
-  users.push({ name, email, password, avatar: null });
+  users.push({ name, email, password, avatar: null, cover: null, level: 1, xp: 35 });
   saveUsers(users);
   showFeedback("Cadastro realizado com sucesso! Agora faça login.");
   registerForm.reset();
@@ -82,6 +82,13 @@ loginForm.addEventListener("submit", (event) => {
     return;
   }
 
-  localStorage.setItem(SESSION_KEY, JSON.stringify({ name: user.name, email: user.email, avatar: user.avatar || "assets/soldesoter_logo.png" }));
+  localStorage.setItem(SESSION_KEY, JSON.stringify({
+    name: user.name,
+    email: user.email,
+    avatar: user.avatar || "assets/soldesoter_logo.png",
+    cover: user.cover || "assets/back.jpg",
+    level: user.level || 1,
+    xp: user.xp || 35,
+  }));
   window.location.href = "home.html";
 });
