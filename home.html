@@ -17,8 +17,11 @@
       <nav class="user-nav" aria-label="Menu do usuário">
         <button id="profile-toggle" class="user-nav__trigger" type="button" aria-expanded="false">
           <img class="user-nav__avatar" src="assets/soldesoter_logo.png" alt="Avatar do usuário" />
-          <span id="profile-name">Usuário</span>
-          <span aria-hidden="true">▾</span>
+          <span class="user-nav__meta">
+            <span id="profile-name">Usuário</span>
+            <span id="profile-level-text" class="user-nav__level">Nível 1</span>
+            <span class="xp-bar user-nav__xp"><span id="profile-xp-fill" style="width: 35%"></span></span>
+          </span>
         </button>
 
         <div id="profile-dropdown" class="profile-dropdown" aria-hidden="true">
