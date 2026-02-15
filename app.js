@@ -23,6 +23,7 @@ const navAvatars = document.querySelectorAll(".user-nav__avatar");
 const homeNoteForm = document.getElementById("home-note-form");
 const homeNoteInput = document.getElementById("home-note-input");
 const homeNoteFeedback = document.getElementById("home-note-feedback");
+const homeNoteDisplay = document.getElementById("home-note-display");
 
 if (year) {
   year.textContent = new Date().getFullYear();
@@ -65,6 +66,15 @@ function showFeedback(element, message, isError = false) {
 
   element.textContent = message;
   element.className = `feedback ${isError ? "feedback--error" : "feedback--ok"}`;
+}
+
+function renderSavedNote(noteText) {
+  if (!homeNoteDisplay) {
+    return;
+  }
+
+  const sanitizedNote = noteText.trim();
+  homeNoteDisplay.textContent = sanitizedNote || "Nenhum texto salvo ainda.";
 }
 
 function saveSessionAndUsers(updatedSession) {
@@ -126,6 +136,8 @@ if (session) {
   if (homeNoteInput) {
     homeNoteInput.value = note;
   }
+
+  renderSavedNote(note);
 }
 
 if (profileToggle && profileDropdown) {
@@ -242,6 +254,7 @@ if (homeNoteForm && homeNoteInput) {
     };
 
     saveSessionAndUsers(updatedSession);
+    renderSavedNote(updatedSession.note);
     showFeedback(homeNoteFeedback, "Texto salvo com sucesso!");
   });
 }
