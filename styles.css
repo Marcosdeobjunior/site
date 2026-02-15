@@ -58,6 +58,23 @@ body {
   gap: 0.75rem;
 }
 
+.topbar__menu {
+  padding: 0.35rem;
+  border-radius: 999px;
+  background: rgba(20, 33, 61, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 10px 25px rgba(16, 23, 40, 0.25);
+}
+
+.topbar__menu .btn--ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+}
+
+.topbar__menu .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
 .user-nav {
   position: relative;
 }
