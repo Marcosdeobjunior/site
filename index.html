@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovaSphere | Login</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="auth-page">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand__logo">N</div>
+        <span class="brand__name">NovaSphere</span>
+      </div>
+      <nav class="topbar__actions">
+        <button id="header-login" class="btn btn--ghost" type="button">Entrar</button>
+        <button id="header-register" class="btn btn--primary" type="button">Registrar</button>
+      </nav>
+    </header>
+
+    <main class="auth-main">
+      <section class="auth-card" aria-live="polite">
+        <h1>Bem-vindo de volta</h1>
+        <p class="subtitle">Faça login para acessar a área principal do site.</p>
+
+        <p id="feedback" class="feedback" role="status"></p>
+
+        <form id="login-form" class="form" autocomplete="on">
+          <label for="login-email">E-mail</label>
+          <input id="login-email" name="email" type="email" placeholder="seu@email.com" required />
+
+          <label for="login-password">Senha</label>
+          <input id="login-password" name="password" type="password" placeholder="Digite sua senha" required />
+
+          <button class="btn btn--primary btn--full" type="submit">Entrar</button>
+        </form>
+
+        <form id="register-form" class="form hidden" autocomplete="on">
+          <label for="register-name">Nome</label>
+          <input id="register-name" name="name" type="text" placeholder="Seu nome" required />
+
+          <label for="register-email">E-mail</label>
+          <input id="register-email" name="email" type="email" placeholder="seu@email.com" required />
+
+          <label for="register-password">Senha</label>
+          <input
+            id="register-password"
+            name="password"
+            type="password"
+            minlength="6"
+            placeholder="Crie uma senha (mínimo 6 caracteres)"
+            required
+          />
+
+          <button class="btn btn--primary btn--full" type="submit">Criar conta</button>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>© <span id="year"></span> NovaSphere. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
