@@ -13,14 +13,53 @@
         <img class="brand__logo" src="assets/soldesoter_logo.png" alt="Logo Sol de Soter" />
         <span class="brand__name">Sol de Soter</span>
       </div>
-      <button id="logout" class="btn btn--ghost" type="button">Sair</button>
     </header>
 
-    <main class="home-main">
+    <main class="home-main home-main--layout">
       <section class="welcome-card">
         <h1 id="welcome-title">Olá!</h1>
         <p>Você está autenticado e foi redirecionado com sucesso para a página Home.</p>
       </section>
+
+      <aside class="profile-panel">
+        <button id="profile-toggle" class="profile-display" type="button" aria-expanded="false">
+          <img class="profile-display__avatar" src="assets/soldesoter_logo.png" alt="Foto de perfil do usuário" />
+          <div class="profile-display__content">
+            <h2 id="profile-name">Usuário</h2>
+            <p>Nível <span id="profile-level">1</span></p>
+            <div class="xp-bar" aria-label="Barra de experiência do usuário">
+              <span id="profile-xp-fill" style="width: 20%"></span>
+            </div>
+          </div>
+        </button>
+
+        <div id="profile-dropdown" class="profile-dropdown hidden" aria-hidden="true">
+          <h3>Estatísticas</h3>
+
+          <div class="stat-item">
+            <p>Força · Nível 1</p>
+            <div class="xp-bar"><span style="width: 10%"></span></div>
+          </div>
+          <div class="stat-item">
+            <p>Intelecto · Nível 1</p>
+            <div class="xp-bar"><span style="width: 10%"></span></div>
+          </div>
+          <div class="stat-item">
+            <p>Sabedoria · Nível 1</p>
+            <div class="xp-bar"><span style="width: 10%"></span></div>
+          </div>
+          <div class="stat-item">
+            <p>Produtividade · Nível 1</p>
+            <div class="xp-bar"><span style="width: 10%"></span></div>
+          </div>
+
+          <nav class="profile-links" aria-label="Links do perfil">
+            <a href="https://www.corinthians.com.br/" target="_blank" rel="noreferrer">Corinthians</a>
+            <a href="#" id="profile-link">Perfil</a>
+            <button id="logout" class="profile-links__logout" type="button">Sair</button>
+          </nav>
+        </div>
+      </aside>
     </main>
 
     <footer class="footer">
