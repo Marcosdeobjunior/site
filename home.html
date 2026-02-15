@@ -4,32 +4,44 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sol de Soter | Home</title>
-    <link rel="icon" type="image/png" href="assets/corinthians-logo.png" />
+    <link rel="icon" type="image/png" href="assets/soldesoter_logo.png" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="home-page auth-required">
     <header class="topbar">
       <a class="brand" href="home.html" aria-label="Ir para Home">
-        <img class="brand__logo" src="assets/corinthians-logo.png" alt="Logo Sol de Soter" />
+        <img class="brand__logo" src="assets/soldesoter_logo.png" alt="Logo Sol de Soter" />
         <span class="brand__name">Sol de Soter</span>
       </a>
 
       <nav class="user-nav" aria-label="Menu do usuário">
         <button id="profile-toggle" class="user-nav__trigger" type="button" aria-expanded="false">
-          <img class="user-nav__avatar" src="assets/corinthians-logo.png" alt="Avatar do usuário" />
+          <img class="user-nav__avatar" src="assets/soldesoter_logo.png" alt="Avatar do usuário" />
           <span id="profile-name">Usuário</span>
           <span aria-hidden="true">▾</span>
         </button>
 
-        <div id="profile-dropdown" class="profile-dropdown hidden" aria-hidden="true">
+        <div id="profile-dropdown" class="profile-dropdown" aria-hidden="true">
           <a class="dropdown-item" href="profile.html">👤 Perfil</a>
 
           <div class="dropdown-stats" aria-label="Estatísticas do perfil">
             <p class="dropdown-stats__title">Estatísticas</p>
-            <p class="dropdown-stats__item">💪 Força · Nível 1</p>
-            <p class="dropdown-stats__item">🧠 Intelecto · Nível 1</p>
-            <p class="dropdown-stats__item">🦉 Sabedoria · Nível 1</p>
-            <p class="dropdown-stats__item">⚙️ Produtividade · Nível 1</p>
+            <div class="dropdown-stats__item">
+              <p>💪 Força · Nível 1</p>
+              <div class="xp-bar"><span style="width: 35%"></span></div>
+            </div>
+            <div class="dropdown-stats__item">
+              <p>🧠 Intelecto · Nível 1</p>
+              <div class="xp-bar"><span style="width: 45%"></span></div>
+            </div>
+            <div class="dropdown-stats__item">
+              <p>🦉 Sabedoria · Nível 1</p>
+              <div class="xp-bar"><span style="width: 55%"></span></div>
+            </div>
+            <div class="dropdown-stats__item">
+              <p>⚙️ Produtividade · Nível 1</p>
+              <div class="xp-bar"><span style="width: 40%"></span></div>
+            </div>
           </div>
 
           <button id="logout" class="dropdown-item dropdown-item--logout" type="button">🚪 Sair</button>

@@ -1,4 +1,6 @@
+const STORAGE_KEY = "novasphere_users";
 const SESSION_KEY = "novasphere_session";
+const DEFAULT_AVATAR = "assets/soldesoter_logo.png";
 
 const year = document.getElementById("year");
 const profileToggle = document.getElementById("profile-toggle");
@@ -7,6 +9,10 @@ const profileName = document.getElementById("profile-name");
 const profileTitleName = document.getElementById("profile-title-name");
 const welcomeTitle = document.getElementById("welcome-title");
 const logoutButton = document.getElementById("logout");
+const avatarUpload = document.getElementById("avatar-upload");
+const avatarFeedback = document.getElementById("avatar-feedback");
+const profileAvatarPreview = document.getElementById("profile-avatar-preview");
+const navAvatars = document.querySelectorAll(".user-nav__avatar");
 
 if (year) {
   year.textContent = new Date().getFullYear();
@@ -19,8 +25,24 @@ if (!session && isAuthRequired) {
   window.location.href = "index.html";
 }
 
+function readUsers() {
+  const users = localStorage.getItem(STORAGE_KEY);
+  return users ? JSON.parse(users) : [];
+}
+
+function updateAvatarOnScreen(avatar) {
+  navAvatars.forEach((img) => {
+    img.src = avatar;
+  });
+
+  if (profileAvatarPreview) {
+    profileAvatarPreview.src = avatar;
+  }
+}
+
 if (session) {
   const user = JSON.parse(session);
+  const avatar = user.avatar || DEFAULT_AVATAR;
 
   if (profileName) {
     profileName.textContent = user.name;
@@ -33,11 +55,13 @@ if (session) {
   if (welcomeTitle) {
     welcomeTitle.textContent = `Olá, ${user.name}!`;
   }
+
+  updateAvatarOnScreen(avatar);
 }
 
 if (profileToggle && profileDropdown) {
   profileToggle.addEventListener("click", () => {
-    profileDropdown.classList.toggle("hidden");
+    profileDropdown.classList.toggle("is-open");
     const expanded = profileToggle.getAttribute("aria-expanded") === "true";
     profileToggle.setAttribute("aria-expanded", String(!expanded));
     profileDropdown.setAttribute("aria-hidden", String(expanded));
@@ -45,10 +69,51 @@ if (profileToggle && profileDropdown) {
 
   document.addEventListener("click", (event) => {
     if (!profileToggle.contains(event.target) && !profileDropdown.contains(event.target)) {
-      profileDropdown.classList.add("hidden");
+      profileDropdown.classList.remove("is-open");
       profileToggle.setAttribute("aria-expanded", "false");
       profileDropdown.setAttribute("aria-hidden", "true");
     }
+  });
+}
+
+if (avatarUpload) {
+  avatarUpload.addEventListener("change", () => {
+    const [file] = avatarUpload.files;
+
+    if (!file) {
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      avatarFeedback.textContent = "Selecione um arquivo de imagem válido.";
+      avatarFeedback.className = "feedback feedback--error";
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const avatarDataUrl = reader.result;
+      const currentSession = JSON.parse(localStorage.getItem(SESSION_KEY));
+
+      const updatedSession = { ...currentSession, avatar: avatarDataUrl };
+      localStorage.setItem(SESSION_KEY, JSON.stringify(updatedSession));
+
+      const users = readUsers();
+      const updatedUsers = users.map((user) => {
+        if (user.email === updatedSession.email) {
+          return { ...user, avatar: avatarDataUrl };
+        }
+
+        return user;
+      });
+
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedUsers));
+      updateAvatarOnScreen(avatarDataUrl);
+      avatarFeedback.textContent = "Foto de perfil atualizada com sucesso!";
+      avatarFeedback.className = "feedback feedback--ok";
+    };
+
+    reader.readAsDataURL(file);
   });
 }
 
