@@ -64,6 +64,10 @@ function showFeedback(element, message, isError = false) {
 }
 
 function saveSessionAndUsers(updatedSession) {
+  if (!updatedSession || !updatedSession.email) {
+    return;
+  }
+
   localStorage.setItem(SESSION_KEY, JSON.stringify(updatedSession));
 
   const users = readUsers();
@@ -148,6 +152,12 @@ if (avatarUpload) {
     reader.onload = () => {
       const avatarDataUrl = reader.result;
       const currentSession = JSON.parse(localStorage.getItem(SESSION_KEY));
+
+      if (!currentSession) {
+        showFeedback(avatarFeedback, "Sessão inválida. Faça login novamente.", true);
+        return;
+      }
+
       const updatedSession = {
         ...currentSession,
         avatar: avatarDataUrl,
@@ -181,16 +191,20 @@ if (coverUpload) {
       const coverDataUrl = reader.result;
       const currentSession = JSON.parse(localStorage.getItem(SESSION_KEY));
 
+      if (!currentSession) {
+        showFeedback(coverFeedback, "Sessão inválida. Faça login novamente.", true);
+        return;
+      }
+
       const updatedSession = {
         ...currentSession,
         cover: coverDataUrl,
-        avatar: coverDataUrl,
+        avatar: currentSession.avatar || DEFAULT_AVATAR,
       };
 
       saveSessionAndUsers(updatedSession);
       updateProfileImagesOnScreen(updatedSession.avatar, updatedSession.cover);
       showFeedback(coverFeedback, "Foto de capa atualizada com sucesso!");
-      showFeedback(avatarFeedback, "Foto de perfil sincronizada com a capa.");
     };
 
     reader.readAsDataURL(file);
