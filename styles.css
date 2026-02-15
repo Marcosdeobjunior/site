@@ -206,9 +206,21 @@ body {
   font-size: 0.95rem;
 }
 
-.form input:focus {
+.form input:focus,
+.form textarea:focus {
   outline: 2px solid rgba(37, 99, 235, 0.3);
   border-color: var(--primary);
+}
+
+.form textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  resize: vertical;
+  min-height: 120px;
+  font-family: inherit;
 }
 
 .feedback {
@@ -380,6 +392,23 @@ body {
   height: 1px;
   opacity: 0;
   pointer-events: none;
+}
+
+
+.home-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notes-card {
+  width: min(680px, 100%);
+}
+
+.notes-card h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.35rem;
 }
 
 .footer {
