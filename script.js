@@ -60,7 +60,7 @@ registerForm.addEventListener("submit", (event) => {
     return;
   }
 
-  users.push({ name, email, password, avatar: null, cover: null, level: 1, xp: 35 });
+  users.push({ name, email, password, avatar: null, cover: null, level: 1, xp: 35, note: "" });
   saveUsers(users);
   showFeedback("Cadastro realizado com sucesso! Agora faça login.");
   registerForm.reset();
@@ -89,6 +89,7 @@ loginForm.addEventListener("submit", (event) => {
     cover: user.cover || "assets/back.jpg",
     level: user.level || 1,
     xp: user.xp || 35,
+    note: user.note || "",
   }));
   window.location.href = "home.html";
 });

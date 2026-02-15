@@ -2,6 +2,7 @@ const STORAGE_KEY = "novasphere_users";
 const SESSION_KEY = "novasphere_session";
 const DEFAULT_AVATAR = "assets/soldesoter_logo.png";
 const DEFAULT_COVER = "assets/back.jpg";
+const DEFAULT_NOTE = "";
 
 const year = document.getElementById("year");
 const profileToggle = document.getElementById("profile-toggle");
@@ -19,6 +20,9 @@ const coverFeedback = document.getElementById("cover-feedback");
 const profileAvatarPreview = document.getElementById("profile-avatar-preview");
 const profileCoverPreview = document.getElementById("profile-cover-preview");
 const navAvatars = document.querySelectorAll(".user-nav__avatar");
+const homeNoteForm = document.getElementById("home-note-form");
+const homeNoteInput = document.getElementById("home-note-input");
+const homeNoteFeedback = document.getElementById("home-note-feedback");
 
 if (year) {
   year.textContent = new Date().getFullYear();
@@ -79,6 +83,7 @@ function saveSessionAndUsers(updatedSession) {
         cover: updatedSession.cover,
         level: updatedSession.level,
         xp: updatedSession.xp,
+        note: updatedSession.note,
       };
     }
 
@@ -94,6 +99,7 @@ if (session) {
   const xp = Number(user.xp) || 35;
   const avatar = user.avatar || DEFAULT_AVATAR;
   const cover = user.cover || DEFAULT_COVER;
+  const note = user.note || DEFAULT_NOTE;
 
   if (profileName) {
     profileName.textContent = user.name;
@@ -116,6 +122,10 @@ if (session) {
   }
 
   updateProfileImagesOnScreen(avatar, cover);
+
+  if (homeNoteInput) {
+    homeNoteInput.value = note;
+  }
 }
 
 if (profileToggle && profileDropdown) {
@@ -208,6 +218,31 @@ if (coverUpload) {
     };
 
     reader.readAsDataURL(file);
+  });
+}
+
+if (homeNoteForm && homeNoteInput) {
+  homeNoteForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const currentSession = JSON.parse(localStorage.getItem(SESSION_KEY));
+
+    if (!currentSession) {
+      showFeedback(homeNoteFeedback, "Sessão inválida. Faça login novamente.", true);
+      return;
+    }
+
+    const updatedSession = {
+      ...currentSession,
+      note: homeNoteInput.value.trim(),
+      avatar: currentSession.avatar || DEFAULT_AVATAR,
+      cover: currentSession.cover || DEFAULT_COVER,
+      level: currentSession.level || 1,
+      xp: currentSession.xp || 35,
+    };
+
+    saveSessionAndUsers(updatedSession);
+    showFeedback(homeNoteFeedback, "Texto salvo com sucesso!");
   });
 }
 

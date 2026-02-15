@@ -25,8 +25,6 @@
         </button>
 
         <div id="profile-dropdown" class="profile-dropdown" aria-hidden="true">
-          <a class="dropdown-item" href="profile.html">👤 Perfil</a>
-
           <div class="dropdown-stats" aria-label="Estatísticas do perfil">
             <p class="dropdown-stats__title">Estatísticas</p>
             <div class="dropdown-stats__item">
@@ -56,6 +54,24 @@
       <section class="welcome-card">
         <h1 id="welcome-title">Olá!</h1>
         <p>Você está autenticado e foi redirecionado com sucesso para a página Home.</p>
+      </section>
+
+      <section class="welcome-card notes-card">
+        <h2>Seu texto</h2>
+        <p>Escreva e salve uma anotação rápida.</p>
+
+        <form id="home-note-form" class="form" autocomplete="off">
+          <label for="home-note-input">Texto</label>
+          <textarea
+            id="home-note-input"
+            name="note"
+            rows="5"
+            placeholder="Digite seu texto aqui..."
+            required
+          ></textarea>
+          <button class="btn btn--primary" type="submit">Salvar texto</button>
+          <p id="home-note-feedback" class="feedback" role="status"></p>
+        </form>
       </section>
     </main>
 
