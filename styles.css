@@ -411,6 +411,26 @@ body {
   margin-bottom: 0.35rem;
 }
 
+.saved-note {
+  margin-top: 1rem;
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #f8fbff;
+}
+
+.saved-note h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.saved-note__content {
+  margin-top: 0.45rem;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
 .footer {
   text-align: center;
   font-size: 0.9rem;
